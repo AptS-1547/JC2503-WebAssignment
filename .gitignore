@@ -1,0 +1,4 @@
+node_modules/
+.gcop/
+
+.DS_Store
