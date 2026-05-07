@@ -106,4 +106,4 @@ Available routes:
 
 `public/js/site.js` controls the mobile navigation menu, light/dark theme toggle, and fallback image handling.
 
-`public/js/game.js` currently prevents the join form from submitting normally. It is the expected place for client-side Socket.IO game behaviour.
+`public/js/game.js` handles the client-side Socket.IO game behaviour, including joining and leaving, rendering shared game state, displaying the active player's private block, enabling valid board placement, updating the turn timer, and showing the scoreboard.

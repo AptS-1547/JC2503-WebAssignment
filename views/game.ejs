@@ -10,7 +10,7 @@
           <p class="eyebrow">Multiplayer Puzzle Game</p>
           <h1>4x4 shared block board</h1>
           <p>
-            This page is prepared for the Socket.IO implementation. The final version will let players join with a display name, take turns, place randomly selected blocks, clear matching lines, and track scores continuously.
+            Join with a display name, wait for your turn, place the private block given by the server, and score points by clearing lines of three or more matching shapes or colours.
           </p>
         </div>
       </section>
@@ -22,50 +22,70 @@
           <h2>Join</h2>
           <label for="player-name">Display name</label>
           <div class="join-row">
-            <input id="player-name" name="player-name" type="text" placeholder="{{player_name_placeholder}}">
+            <input id="player-name" name="player-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Enter your name">
             <button class="button primary" type="submit">Join Game</button>
           </div>
-          <p class="panel-note" role="status">Status: {{connection_status}}</p>
+          <p class="game-message" id="game-message" role="status">Connecting to game server...</p>
+
+          <div class="player-list">
+            <h3>Turn Order</h3>
+            <ol id="player-list">
+              <li>No players have joined yet.</li>
+            </ol>
+          </div>
         </form>
 
         <section class="game-board-panel" aria-labelledby="board-heading">
           <div class="board-header">
             <div>
               <p class="eyebrow">Board</p>
-              <h2 id="board-heading">Current turn: {{current_player_name}}</h2>
+              <h2 id="board-heading">Waiting for players</h2>
             </div>
-            <span class="turn-badge">{{turn_state}}</span>
+            <div class="board-side-status">
+              <span class="turn-badge" id="turn-state">Not joined</span>
+              <div class="board-block-card" id="board-block-card" aria-live="polite">
+                <span class="board-block-label" id="board-block-label">Block</span>
+                <span class="board-block-value" id="board-block-value" aria-label="No block assigned">--</span>
+              </div>
+            </div>
           </div>
 
-          <div class="board-grid" role="group" aria-label="4 by 4 puzzle grid">
+          <div class="board-grid" id="board-grid" role="group" aria-label="4 by 4 puzzle grid">
             <% for (let i = 0; i < 16; i += 1) { %>
-              <button class="board-cell" type="button" aria-label="Board position <%= i + 1 %>">
-                <% if ([1, 4, 10].includes(i)) { %>
-                  <span class="block-preview block-cyan square"></span>
-                <% } else if ([6, 12].includes(i)) { %>
-                  <span class="block-preview block-amber circle"></span>
-                <% } %>
-              </button>
+              <button class="board-cell" type="button" data-cell-index="<%= i %>" aria-label="Board position <%= i + 1 %>"></button>
             <% } %>
           </div>
         </section>
 
         <aside class="game-panel state-panel" aria-labelledby="game-state-heading">
           <h2 id="game-state-heading">Game State</h2>
-          <div class="current-block">
-            <span class="block-preview block-indigo triangle"></span>
+          <div class="current-block" id="current-block-panel">
+            <span class="block-placeholder" id="current-block-preview" aria-hidden="true"></span>
             <div>
-              <strong>{{current_block}}</strong>
-              <p>Only the active player will be able to place this block.</p>
+              <strong id="current-block-label">No block assigned</strong>
+              <p id="current-block-note">Join the game to receive a block on your turn.</p>
             </div>
           </div>
 
+          <dl class="game-stats">
+            <div>
+              <dt>Blocks in pool</dt>
+              <dd id="pool-count">16</dd>
+            </div>
+            <div>
+              <dt>Filled cells</dt>
+              <dd id="filled-count">0 / 16</dd>
+            </div>
+            <div>
+              <dt>Turn timer</dt>
+              <dd id="turn-timer">--</dd>
+            </div>
+          </dl>
+
           <div class="scoreboard">
             <h3>Scoreboard</h3>
-            <ol>
-              <li><span>{{player_one}}</span><strong>{{score_one}}</strong></li>
-              <li><span>{{player_two}}</span><strong>{{score_two}}</strong></li>
-              <li><span>{{player_three}}</span><strong>{{score_three}}</strong></li>
+            <ol id="scoreboard">
+              <li><span>No scores yet</span><strong>0</strong></li>
             </ol>
           </div>
         </aside>
@@ -73,6 +93,7 @@
     </main>
 
     <%- include('partials/footer') %>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/game.js" defer></script>
   </body>
 </html>

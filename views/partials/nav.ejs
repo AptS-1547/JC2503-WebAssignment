@@ -17,9 +17,9 @@
 
     <div class="nav-actions" id="primary-navigation">
       <div class="nav-links">
-        <a class="nav-link<%= activePage === 'home' ? ' active' : '' %>" href="/" <%= activePage === 'home' ? 'aria-current="page"' : '' %>>Home</a>
-        <a class="nav-link<%= activePage === 'about' ? ' active' : '' %>" href="/about" <%= activePage === 'about' ? 'aria-current="page"' : '' %>>About</a>
-        <a class="nav-link<%= activePage === 'game' ? ' active' : '' %>" href="/game" <%= activePage === 'game' ? 'aria-current="page"' : '' %>>Game</a>
+        <a class="nav-link<%= activePage === 'home' ? ' active' : '' %>" href="/" <%- activePage === 'home' ? 'aria-current="page"' : '' %>>Home</a>
+        <a class="nav-link<%= activePage === 'about' ? ' active' : '' %>" href="/about" <%- activePage === 'about' ? 'aria-current="page"' : '' %>>About</a>
+        <a class="nav-link<%= activePage === 'game' ? ' active' : '' %>" href="/game" <%- activePage === 'game' ? 'aria-current="page"' : '' %>>Game</a>
       </div>
       <button class="theme-toggle" type="button" aria-label="Toggle colour theme">
         <span class="theme-icon light-icon" aria-hidden="true">Light</span>

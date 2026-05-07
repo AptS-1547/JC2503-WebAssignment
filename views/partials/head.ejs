@@ -12,5 +12,8 @@
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/css/style.css">
+  <% if (typeof extraStylesheet !== 'undefined' && extraStylesheet) { %>
+    <link rel="stylesheet" href="<%= extraStylesheet %>">
+  <% } %>
   <script src="/js/site.js" defer></script>
 </head>
