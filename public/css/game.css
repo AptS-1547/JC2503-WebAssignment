@@ -209,7 +209,6 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  pointer-events: none;
   background: linear-gradient(135deg, rgba(255, 105, 180, 0.32), rgba(77, 166, 255, 0.26));
   animation: cleared-cell-fade 420ms ease-out forwards;
 }

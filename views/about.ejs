@@ -7,7 +7,7 @@
     <main id="main-content">
       <section class="page-hero section-band">
         <div class="page-shell">
-          <p class="eyebrow">About {{display_name}}</p>
+          <p class="eyebrow">About Me</p>
           <h1>Study background and technical interests</h1>
           <p>
             My interests are strongest where backend logic, developer tools, and usable interfaces meet. This page takes a closer look at the technical interests that shape how I approach web application development: backend systems, interface design, open-source tools, and interactive applications.
@@ -15,10 +15,11 @@
         </div>
       </section>
 
-      <section class="page-shell content-section">
+      <section class="page-shell content-section" aria-labelledby="profile-section-heading">
+        <h2 id="profile-section-heading" class="sr-only">Profile and personal details</h2>
         <div class="split-layout">
           <article class="text-block">
-            <h2>Profile</h2>
+            <h3>Profile</h3>
             <p>
               I enjoy turning technical ideas into applications that people can actually use. I am interested in building web applications that feel clear and usable on the surface while still having reliable logic underneath.
             </p>
@@ -30,26 +31,30 @@
           <aside aria-labelledby="personal-details-heading">
             <h2 id="personal-details-heading" class="sr-only">Personal details</h2>
             <dl class="info-stack">
-            <div class="info-item">
-              <dt class="info-label">Programme</dt>
-              <dd>Computer Science</dd>
-            </div>
-            <div class="info-item">
-              <dt class="info-label">Main interest</dt>
-              <dd>Web applications and developer tools</dd>
-            </div>
-            <div class="info-item">
-              <dt class="info-label">Skills</dt>
-              <dd>Rust, Node.js, React</dd>
-            </div>
-            <div class="info-item">
-              <dt class="info-label">Contact</dt>
-              <dd><a class="inline-link" href="mailto:apts-1547@esaps.net">apts-1547@esaps.net</a></dd>
-            </div>
-            <div class="info-item">
-              <dt class="info-label">Personal note</dt>
-              <dd>Building small tools that solve real problems.</dd>
-            </div>
+              <div class="info-item">
+                <dt class="info-label">Display name</dt>
+                <dd>{{display_name}}</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Programme</dt>
+                <dd>Computer Science</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Main interest</dt>
+                <dd>Web applications and developer tools</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Skills</dt>
+                <dd>Rust, Node.js, React</dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Contact</dt>
+                <dd><a class="inline-link" href="mailto:apts-1547@esaps.net">apts-1547@esaps.net</a></dd>
+              </div>
+              <div class="info-item">
+                <dt class="info-label">Personal note</dt>
+                <dd>Building small tools that solve real problems.</dd>
+              </div>
             </dl>
           </aside>
         </div>
