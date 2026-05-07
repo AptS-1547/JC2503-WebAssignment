@@ -1,0 +1,16 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A JC2503 Web Application Development coursework website with a personal introduction, technical interests, and a multiplayer puzzle game.">
+  <title><%= pageTitle %> | JC2503 Coursework Website</title>
+  <script>
+    (function () {
+      var storedTheme = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.className = storedTheme || (prefersDark ? 'dark' : 'light');
+    }());
+  </script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/site.js" defer></script>
+</head>

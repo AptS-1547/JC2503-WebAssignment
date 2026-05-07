@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/nav') %>
+
+    <main id="main-content">
+      <section class="page-hero section-band">
+        <div class="page-shell">
+          <p class="eyebrow">Multiplayer Puzzle Game</p>
+          <h1>4x4 shared block board</h1>
+          <p>
+            This page is prepared for the Socket.IO implementation. The final version will let players join with a display name, take turns, place randomly selected blocks, clear matching lines, and track scores continuously.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-shell game-layout content-section" aria-labelledby="game-layout-heading">
+        <h2 id="game-layout-heading" class="sr-only">Game application layout</h2>
+
+        <form class="game-panel join-panel" id="join-form">
+          <h2>Join</h2>
+          <label for="player-name">Display name</label>
+          <div class="join-row">
+            <input id="player-name" name="player-name" type="text" placeholder="{{player_name_placeholder}}">
+            <button class="button primary" type="submit">Join Game</button>
+          </div>
+          <p class="panel-note" role="status">Status: {{connection_status}}</p>
+        </form>
+
+        <section class="game-board-panel" aria-labelledby="board-heading">
+          <div class="board-header">
+            <div>
+              <p class="eyebrow">Board</p>
+              <h2 id="board-heading">Current turn: {{current_player_name}}</h2>
+            </div>
+            <span class="turn-badge">{{turn_state}}</span>
+          </div>
+
+          <div class="board-grid" role="group" aria-label="4 by 4 puzzle grid">
+            <% for (let i = 0; i < 16; i += 1) { %>
+              <button class="board-cell" type="button" aria-label="Board position <%= i + 1 %>">
+                <% if ([1, 4, 10].includes(i)) { %>
+                  <span class="block-preview block-cyan square"></span>
+                <% } else if ([6, 12].includes(i)) { %>
+                  <span class="block-preview block-amber circle"></span>
+                <% } %>
+              </button>
+            <% } %>
+          </div>
+        </section>
+
+        <aside class="game-panel state-panel" aria-labelledby="game-state-heading">
+          <h2 id="game-state-heading">Game State</h2>
+          <div class="current-block">
+            <span class="block-preview block-indigo triangle"></span>
+            <div>
+              <strong>{{current_block}}</strong>
+              <p>Only the active player will be able to place this block.</p>
+            </div>
+          </div>
+
+          <div class="scoreboard">
+            <h3>Scoreboard</h3>
+            <ol>
+              <li><span>{{player_one}}</span><strong>{{score_one}}</strong></li>
+              <li><span>{{player_two}}</span><strong>{{score_two}}</strong></li>
+              <li><span>{{player_three}}</span><strong>{{score_three}}</strong></li>
+            </ol>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/game.js" defer></script>
+  </body>
+</html>

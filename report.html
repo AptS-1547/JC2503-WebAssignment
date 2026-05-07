@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project report for the JC2503 Web Application Development coursework website and multiplayer puzzle game.">
+    <title>Project Report | JC2503 Coursework Website</title>
+    <script>
+      (function () {
+        var storedTheme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.className = storedTheme || (prefersDark ? 'dark' : 'light');
+      }());
+    </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Report navigation">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">
+            <img class="brand-icon" src="/favicon.ico" alt="">
+          </span>
+          <span>JC2503 Coursework Website</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <div class="nav-actions" id="primary-navigation">
+          <div class="nav-links">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/game">Game</a>
+          </div>
+          <button class="theme-toggle" type="button" aria-label="Toggle colour theme">
+            <span class="theme-icon light-icon" aria-hidden="true">Light</span>
+            <span class="theme-icon dark-icon" aria-hidden="true">Dark</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="page-hero section-band">
+        <div class="page-shell">
+          <p class="eyebrow">JC2503 Report</p>
+          <h1>Project Report</h1>
+          <p>{{report_intro_placeholder}}</p>
+        </div>
+      </section>
+
+      <article class="page-shell content-section text-block">
+        <h2>Overall Website Design</h2>
+        <p>{{report_website_design}}</p>
+
+        <h2>Game Application Design</h2>
+        <p>{{report_game_design}}</p>
+
+        <h2>Client and Server Communication</h2>
+        <p>{{report_socketio_communication}}</p>
+
+        <h2>Reflection</h2>
+        <p>{{report_reflection}}</p>
+
+        <h2>References and AI Acknowledgement</h2>
+        <p>{{report_references_and_ai_acknowledgement}}</p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>&copy; 2026 {{display_name}}. Report for JC2503.</p>
+      </div>
+    </footer>
+  </body>
+</html>

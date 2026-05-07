@@ -1,0 +1,30 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="brand" href="/" aria-label="JC2503 Coursework Website home">
+      <span class="brand-mark" aria-hidden="true">
+        <img class="brand-icon" src="/favicon.ico" alt="">
+      </span>
+      <span>JC2503 Coursework Website</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+
+    <div class="nav-actions" id="primary-navigation">
+      <div class="nav-links">
+        <a class="nav-link<%= activePage === 'home' ? ' active' : '' %>" href="/" <%= activePage === 'home' ? 'aria-current="page"' : '' %>>Home</a>
+        <a class="nav-link<%= activePage === 'about' ? ' active' : '' %>" href="/about" <%= activePage === 'about' ? 'aria-current="page"' : '' %>>About</a>
+        <a class="nav-link<%= activePage === 'game' ? ' active' : '' %>" href="/game" <%= activePage === 'game' ? 'aria-current="page"' : '' %>>Game</a>
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Toggle colour theme">
+        <span class="theme-icon light-icon" aria-hidden="true">Light</span>
+        <span class="theme-icon dark-icon" aria-hidden="true">Dark</span>
+      </button>
+    </div>
+  </nav>
+</header>

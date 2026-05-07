@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/nav') %>
+
+    <main id="main-content">
+      <section class="hero section-band">
+        <div class="page-shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">JC2503 Coursework Website</p>
+            <h1>{{display_name}}</h1>
+            <p class="hero-subtitle">Computer Science student and web application developer</p>
+            <p class="hero-text">
+              I am interested in practical web applications, open-source tools, and interactive systems. This coursework website introduces my background, explains the structure of the site, and provides access to the multiplayer 4x4 puzzle game built for the assignment.
+            </p>
+            <nav class="hero-actions" aria-label="Primary page links">
+              <a class="button primary" href="/about">Explore About</a>
+              <a class="button secondary" href="/game">Open Game</a>
+            </nav>
+          </div>
+
+          <aside class="profile-panel" aria-label="Profile summary">
+            <img
+              class="avatar"
+              src="/images/avatar.png"
+              alt="My original character AptS:1547"
+              data-fallback-src="/images/avatar-placeholder.svg"
+            >
+            <dl class="profile-facts">
+              <div>
+                <dt>Study</dt>
+                <dd>Computer Science</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Web applications and developer tools</dd>
+              </div>
+              <div>
+                <dt>Coursework</dt>
+                <dd>JC2503 Web Application Development</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-shell content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Website Overview</p>
+          <h2>Three pages, one consistent structure</h2>
+          <p>
+            This site is organised around a short introduction, a more detailed about page, and an interactive puzzle game page.
+          </p>
+        </div>
+
+        <div class="card-grid three-columns">
+          <article class="feature-card">
+            <span class="card-kicker">01</span>
+            <h3>Introduction</h3>
+            <p>
+              A concise landing page with personal context, study information, and links to the main sections of the site.
+            </p>
+            <a class="card-link" href="/">View introduction</a>
+          </article>
+
+          <article class="feature-card accent-cyan">
+            <span class="card-kicker">02</span>
+            <h3>About</h3>
+            <p>
+              A more detailed page about my study background, personal interests, and the areas I want to develop further.
+            </p>
+            <a class="card-link" href="/about">Read about me</a>
+          </article>
+
+          <article class="feature-card accent-green">
+            <span class="card-kicker">03</span>
+            <h3>Game Application</h3>
+            <p>
+              A browser-based 4x4 puzzle game page where multiple players will join, take turns, place blocks, and follow the scoreboard.
+            </p>
+            <a class="card-link" href="/game">Open game page</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>

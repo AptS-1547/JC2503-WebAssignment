@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/nav') %>
+
+    <main id="main-content">
+      <section class="page-hero section-band">
+        <div class="page-shell">
+          <p class="eyebrow">About {{display_name}}</p>
+          <h1>Study background and technical interests</h1>
+          <p>
+            My interests are strongest where backend logic, developer tools, and usable interfaces meet. This page takes a closer look at the technical interests that shape how I approach web application development: backend systems, interface design, open-source tools, and interactive applications.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-shell content-section">
+        <div class="split-layout">
+          <article class="text-block">
+            <h2>Profile</h2>
+            <p>
+              I enjoy turning technical ideas into applications that people can actually use. I am interested in building web applications that feel clear and usable on the surface while still having reliable logic underneath.
+            </p>
+            <p>
+              I also like working on tools that make development or infrastructure tasks easier. My GitHub projects show an interest in Rust services, cloud tools, automation, and developer utilities. This coursework gives me a smaller environment to practise those interests with HTML, CSS, Node.js, and Socket.IO.
+            </p>
+          </article>
+
+          <aside aria-labelledby="personal-details-heading">
+            <h2 id="personal-details-heading" class="sr-only">Personal details</h2>
+            <dl class="info-stack">
+            <div class="info-item">
+              <dt class="info-label">Programme</dt>
+              <dd>Computer Science</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">Main interest</dt>
+              <dd>Web applications and developer tools</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">Skills</dt>
+              <dd>Rust, Node.js, React</dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">Contact</dt>
+              <dd><a class="inline-link" href="mailto:apts-1547@esaps.net">apts-1547@esaps.net</a></dd>
+            </div>
+            <div class="info-item">
+              <dt class="info-label">Personal note</dt>
+              <dd>Building small tools that solve real problems.</dd>
+            </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-shell content-section">
+        <div class="section-heading">
+          <p class="eyebrow">What I Like Building</p>
+          <h2>Technical areas I keep coming back to</h2>
+        </div>
+
+        <div class="card-grid three-columns">
+          <article class="feature-card accent-amber">
+            <h3>Backend Systems</h3>
+            <p>I like projects where the backend has real responsibility rather than only serving static pages. I am interested in systems that manage files, links, storage, network requests, and data reliably behind a web interface.</p>
+            <div class="tag-row">
+              <span>Rust</span>
+              <span>Node.js</span>
+              <span>APIs</span>
+            </div>
+          </article>
+
+          <article class="feature-card accent-cyan">
+            <h3>Developer Tools</h3>
+            <p>I often prefer tools that make technical work faster, safer, or easier to repeat. I like tools that remove repetitive work, such as commit helpers, automation scripts, DNS management panels, and deployment utilities.</p>
+            <div class="tag-row">
+              <span>CLI</span>
+              <span>Automation</span>
+              <span>DNS</span>
+            </div>
+          </article>
+
+          <article class="feature-card accent-green">
+            <h3>Interactive Web Apps</h3>
+            <p>I am also interested in applications where the interface changes as users act. I enjoy systems where choices, turns, and feedback matter, which makes the multiplayer puzzle game a useful part of the site.</p>
+            <div class="tag-row">
+              <span>Turns</span>
+              <span>Socket.IO</span>
+              <span>Feedback</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-shell content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Projects I Return To</p>
+          <h2>Repositories that reflect those interests</h2>
+          <p>
+            These examples are based on my public GitHub repositories with comparatively higher star counts.
+          </p>
+        </div>
+
+        <div class="timeline-list">
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div>
+              <h3><a class="inline-link" href="https://github.com/AptS-1547/AsterDrive">AsterDrive</a></h3>
+              <p>A self-hosted cloud storage solution written mainly in Rust. It reflects my interest in storage systems, web panels, sharing workflows, and practical backend design.</p>
+              <p class="repo-meta">Rust · 21 stars</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker cyan"></div>
+            <div>
+              <h3><a class="inline-link" href="https://github.com/AptS-1547/shortlinker">shortlinker</a></h3>
+              <p>A fast URL shortener built with Rust, HTTP redirects, and a clean web interface. It connects backend performance with user-facing interaction.</p>
+              <p class="repo-meta">Rust · 20 stars</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker green"></div>
+            <div>
+              <h3><a class="inline-link" href="https://github.com/AptS-1547/gcop-rs">gcop-rs</a></h3>
+              <p>An AI-powered Git commit message generator and code review helper. It shows my interest in developer tooling and smoother programming workflows.</p>
+              <p class="repo-meta">Rust · 16 stars</p>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker blue"></div>
+            <div>
+              <h3><a class="inline-link" href="https://github.com/AptS-1547/dns-orchestrator">dns-orchestrator</a></h3>
+              <p>A unified DNS management project for working across multiple cloud providers. It reflects my interest in network tools and operational interfaces.</p>
+              <p class="repo-meta">Rust · 12 stars</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-shell content-section">
+        <div class="split-layout">
+          <div>
+            <p class="eyebrow">What I Am Practising Here</p>
+            <h2>How this coursework connects to my interests</h2>
+            <p>
+              The assignment is smaller than these projects, but it uses the same kind of thinking: clear interface structure, predictable user actions, shared state, and feedback that helps users understand what is happening.
+            </p>
+          </div>
+
+          <div class="project-list">
+            <article class="compact-card">
+              <h3>What I want to practise</h3>
+              <p>I want this coursework to make the connection between page structure and real-time interaction clearer. I want to improve how I connect frontend structure with server-managed interaction, especially in the multiplayer game.</p>
+              <div class="tag-row">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Socket.IO</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>
