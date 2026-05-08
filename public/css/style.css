@@ -647,6 +647,10 @@ button {
   grid-template-columns: auto 1fr;
   gap: 16px;
   padding: 18px;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
 }
 
 .timeline-marker {
@@ -678,6 +682,9 @@ button {
   text-decoration-color: var(--esap-pink);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
 }
 
 .inline-link:hover,
