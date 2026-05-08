@@ -316,21 +316,23 @@ function renderPrivateTurn() {
     return;
   }
 
+  const hasPrivateBlock = hasCurrentPrivateBlock();
+
   renderBoardBlockCard();
+  renderTurnTimer();
   currentBlockPreview.className = 'block-placeholder';
   currentBlockPreview.innerHTML = '';
-  currentBlockPanel.classList.toggle('active-turn', privateTurn.isCurrent);
+  currentBlockPanel.classList.toggle('active-turn', hasPrivateBlock);
 
-  if (privateTurn.isCurrent && privateTurn.block) {
+  if (hasPrivateBlock) {
     currentBlockPreview.className = `block-preview ${privateTurn.block.shape} block-${privateTurn.block.color}`;
     currentBlockLabel.textContent = privateTurn.block.label;
     currentBlockNote.textContent = 'Place it on an empty cell before the timer ends.';
-    startTimer(privateTurn.expiresAt);
-    renderBoard();
+    if (latestState) {
+      renderBoard();
+    }
     return;
   }
-
-  stopTimer();
 
   if (!joinedPlayerId) {
     currentBlockLabel.textContent = 'No block assigned';
@@ -338,9 +340,17 @@ function renderPrivateTurn() {
     return;
   }
 
+  if (latestState && latestState.currentPlayerId === joinedPlayerId) {
+    currentBlockLabel.textContent = 'Preparing your block';
+    currentBlockNote.textContent = 'The server is assigning your private block.';
+    return;
+  }
+
   currentBlockLabel.textContent = 'Waiting for your turn';
-  currentBlockNote.textContent = 'The current block is visible only to the active player.';
-  renderBoard();
+  currentBlockNote.textContent = 'Your block will appear on your turn.';
+  if (latestState) {
+    renderBoard();
+  }
 }
 
 function renderBoardBlockCard() {
@@ -349,9 +359,11 @@ function renderBoardBlockCard() {
   }
 
   boardBlockValue.innerHTML = '';
-  boardBlockCard.classList.toggle('active-turn', privateTurn.isCurrent);
+  const hasPrivateBlock = hasCurrentPrivateBlock();
 
-  if (privateTurn.isCurrent && privateTurn.block) {
+  boardBlockCard.classList.toggle('active-turn', hasPrivateBlock);
+
+  if (hasPrivateBlock) {
     const previewSlot = document.createElement('span');
 
     boardBlockLabel.textContent = 'Your block';
@@ -365,6 +377,17 @@ function renderBoardBlockCard() {
   boardBlockLabel.textContent = joinedPlayerId ? 'Waiting' : 'Block';
   boardBlockValue.textContent = '--';
   boardBlockValue.setAttribute('aria-label', joinedPlayerId ? 'Waiting for your block' : 'No block assigned');
+}
+
+function renderTurnTimer() {
+  const expiresAt = getVisibleTurnExpiresAt();
+
+  if (expiresAt) {
+    startTimer(expiresAt);
+    return;
+  }
+
+  stopTimer();
 }
 
 function startTimer(expiresAt) {
@@ -396,12 +419,32 @@ function updateTimer(expiresAt) {
 
 function canPlaceBlock(index) {
   return Boolean(
-    joinedPlayerId
-      && privateTurn.isCurrent
-      && privateTurn.block
+    hasCurrentPrivateBlock()
       && latestState
       && !latestState.grid[index],
   );
+}
+
+function hasCurrentPrivateBlock() {
+  return Boolean(
+    joinedPlayerId
+      && latestState
+      && latestState.currentPlayerId === joinedPlayerId
+      && privateTurn.isCurrent
+      && privateTurn.block,
+  );
+}
+
+function getVisibleTurnExpiresAt() {
+  if (!latestState || !latestState.turnExpiresAt) {
+    return null;
+  }
+
+  if (hasCurrentPrivateBlock() && privateTurn.expiresAt) {
+    return privateTurn.expiresAt;
+  }
+
+  return latestState.turnExpiresAt;
 }
 
 function createBlockElement(block, extraClassName = '') {
