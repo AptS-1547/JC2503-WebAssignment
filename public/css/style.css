@@ -5,7 +5,6 @@
   --muted-foreground: #737373;
   --border: #e5e5e5;
   --surface: #ffffff;
-  --surface-soft: #fafafa;
   --border-strong: #d4d4d4;
 
   --esap-yellow: #ffd93d;
@@ -16,11 +15,7 @@
   --esap-blue-dark: #2e8fff;
 
   --color-primary: var(--esap-yellow);
-  --color-secondary: var(--esap-pink);
-  --color-tertiary: var(--esap-blue);
   --color-amber: var(--esap-yellow);
-  --color-green: var(--esap-blue);
-  --color-rose: var(--esap-pink);
   --color-text: var(--foreground);
   --color-muted: var(--muted-foreground);
   --color-soft: var(--muted);
@@ -47,7 +42,6 @@
   --muted-foreground: #a3a3a3;
   --border: #262626;
   --surface: #111111;
-  --surface-soft: #171717;
   --border-strong: #333333;
 
   --esap-yellow: #ffd93d;
@@ -76,7 +70,6 @@
     --muted-foreground: #a3a3a3;
     --border: #262626;
     --surface: #111111;
-    --surface-soft: #171717;
     --border-strong: #333333;
 
     --esap-yellow: #ffd93d;

@@ -262,10 +262,6 @@
   background: transparent;
 }
 
-.block-cyan {
-  background: var(--esap-pink);
-}
-
 .block-pink {
   background: var(--esap-pink);
 }
@@ -278,20 +274,8 @@
   background: #2fd180;
 }
 
-.block-amber {
-  background: var(--color-amber);
-}
-
 .block-yellow {
   background: var(--color-amber);
-}
-
-.block-indigo {
-  background: var(--color-primary);
-}
-
-.block-preview.triangle.block-indigo {
-  border-bottom-color: var(--color-primary);
 }
 
 .block-preview.triangle.block-pink {
