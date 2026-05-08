@@ -405,7 +405,15 @@ function placeCurrentBlock(player, block, cellIndex) {
   }
 
   if (game.grid.every(Boolean)) {
+    const jackpotCells = game.grid.map((placedBlock, index) => ({
+      index,
+      block: placedBlock,
+    }));
+
     refillPoolFromBoard();
+    game.lastClearedCells = jackpotCells;
+    game.lastClearedCellIndexes = jackpotCells.map((cell) => cell.index);
+    game.lastClearedAt = Date.now();
     player.score += BOARD_SIZE;
     advanceTurn(`${player.name} scored a 16-point jackpot. The board has been reset.`);
     return;
