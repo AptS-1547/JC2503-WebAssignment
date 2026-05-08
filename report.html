@@ -53,7 +53,7 @@
           <p class="eyebrow">JC2503 Report</p>
           <h1>Project Report</h1>
           <p>
-            This report describes the design and implementation of my JC2503 coursework website: a personal introduction site with an interactive multiplayer puzzle game built with Express, EJS, client-side JavaScript, CSS, and Socket.IO.
+            This report describes my JC2503 coursework website: a personal introduction site with a multiplayer puzzle game built with Express, EJS, CSS, client-side JavaScript, and Socket.IO.
           </p>
         </div>
       </section>
@@ -61,39 +61,39 @@
       <article class="page-shell content-section text-block">
         <h2>Overall Website Design</h2>
         <p>
-          The website is organised as three main pages: the introduction page at the root route, the About page, and the Game page. The introduction page gives a short personal overview and links to the rest of the site. The About page gives more detailed information about my study background, technical interests, and project experience. The Game page contains the interactive coursework application. I used Express for routing and EJS templates for rendering, with shared partials for the head, navigation bar, and footer.
+          The website has three main pages: the introduction page at the root route, the About page, and the Game page. The first page gives a short personal overview and links to the rest of the site. The About page gives more detail about my study background, technical interests, and project experience. The Game page contains the interactive coursework application. Express handles routing, while EJS templates and shared partials keep the head, navigation bar, and footer consistent.
         </p>
         <p>
-          The visual design follows the frontend style I commonly use in my own personal projects, with yellow, pink, and blue accents as a consistent theme. The CSS defines reusable layouts, cards, buttons, responsive grids, and a dark/light colour mode. The site remains readable on smaller screens by collapsing multi-column layouts into one column. Accessibility was considered through semantic landmarks, keyboard focus styles, a skip link, alternative text, and ARIA labels.
+          The visual design adapts a colour theme I often use in personal projects, with yellow, pink, and blue accents across reusable cards, buttons, grids, and panels. Multi-column layouts collapse on smaller screens, and the interface includes a dark/light theme. Accessibility was considered through semantic landmarks, keyboard focus styles, a skip link, alternative text, and ARIA labels.
         </p>
 
         <h2>Game Application Design</h2>
         <p>
-          The puzzle game is a continuously running turn-based multiplayer application. The server stores the authoritative game state in memory, including the 4 by 4 grid, the shared pool of blocks, the active player list, the current player index, the private block, the turn timer, and the latest event. The block set contains exactly 16 unique blocks, created from four shapes and four colours. When a turn begins, the server randomly selects one block from the pool and assigns it only to the active player.
+          The puzzle game is a continuously running turn-based multiplayer application. The server stores the authoritative state in memory, including the 4 by 4 grid, block pool, active player list, current player index, private block, turn timer, scores, and latest event. The block set contains exactly 16 unique blocks, created from four shapes and four colours. At the start of each turn, the server randomly selects one block from the pool and assigns it only to the active player.
         </p>
         <p>
-          Players place their assigned block by clicking an empty board cell. After placement, the server removes the block from the pool and checks horizontal, vertical, and diagonal lines for contiguous runs of three or more blocks sharing either shape or colour. Matching blocks are cleared, returned to the pool, and scored at one point per removed block. This line-clearing check is applied before the full-board jackpot check, because a completed line is an immediate result of the placement; the 16 point jackpot is therefore awarded only if no line is cleared and the grid remains full. New players join at the end of the turn order, while leaving, disconnecting, or timing out removes a player from the active list.
+          Players place their assigned block by clicking an empty board cell. The server then removes the block from the pool and checks horizontal, vertical, and diagonal lines for contiguous runs of three or more blocks sharing shape or colour. Matching blocks are cleared, returned to the pool, and scored at one point per block. This line-clearing check happens before the full-board jackpot check, because a completed line is the immediate result of the placement; the 16 point jackpot is awarded only if no line is cleared and the grid remains full. Players can join at the end of the turn order, leave, disconnect, or be removed after a timeout.
         </p>
 
         <h2>Client and Server Communication</h2>
         <p>
-          Socket.IO is used because the game state must be shared between several browser clients without page reloads. When a browser connects, the server emits a public <code>gameState</code> event so the interface can show the board, players, scores, pool count, filled-cell count, and latest status message. The client sends <code>joinGame</code> with the display name entered in the form. The server validates the name, prevents duplicate active names, adds the player to the turn order, and broadcasts the updated state.
+          Socket.IO is used because several browsers need live shared state without page reloads. When a browser connects, the server emits a public <code>gameState</code> event containing the board, players, scores, pool count, filled-cell count, timer information, and latest status message. The client sends <code>joinGame</code> with the display name. The server validates it, prevents duplicate active names, adds the player to the turn order, and broadcasts the updated state.
         </p>
         <p>
-          The distinction between public and private information is important. Public state is sent to all players through <code>gameState</code>, but the current block is sent with a separate <code>privateTurn</code> event only to the active player's socket. This prevents other players from seeing the block before it is placed. The client sends <code>placeBlock</code> when a board position is clicked, and the server checks the player, cell index, and cell availability. The server also handles <code>leaveGame</code> and <code>disconnect</code>, and uses a turn timer to remove players who do not act in time.
+          Public state is sent to all players, but the current block is sent through a separate <code>privateTurn</code> event only to the active player's socket. This prevents other players from seeing the block before placement. The client sends <code>placeBlock</code> when a board cell is clicked, and the server checks the player, turn, cell index, and availability. The server also handles <code>leaveGame</code>, <code>disconnect</code>, and timeout removal.
         </p>
 
         <h2>Reflection</h2>
         <p>
-          The most challenging part was keeping the game state reliable while several users can join, leave, and take turns dynamically. I found it clearer to make the server the only authority for the board, pool, score, and current turn. The browser client therefore does not decide whether a move is legal; it sends user actions and renders the state returned by the server. This reduced client inconsistency.
+          The main challenge was keeping game state reliable while users can join, leave, and take turns dynamically. I made the server the only authority for the board, pool, score, and current turn. The browser client does not decide whether a move is legal; it sends user actions and renders server state. This made the program easier to reason about, especially when a player disconnects or times out during their turn.
         </p>
         <p>
-          Another challenge was the scoring logic. The board is small, but checking horizontal, vertical, and diagonal contiguous runs still required a careful representation of possible lines. During multiplayer testing, I noticed that cleared blocks disappeared too quickly, so users might not understand which blocks had been removed in the previous turn. I added a short clearing animation and kept status feedback visible to make each move clearer. The final interface therefore includes a status message, turn order, scoreboard, board counters, timer, and clear feedback. Validation also taught me to distinguish clear HTML or CSS issues from compatibility warnings around CSS custom properties.
+          The interface also changed during testing. At first, the game worked logically, but players did not always have enough feedback about the current turn. I added a shared visible timer, clearer waiting messages, and a short clearing animation so that removed blocks were easier to understand. I also clarified the scoring order in the report: line clearing happens before the full-board jackpot because it is the direct result of the placement. Validating the pages and CSS helped me catch presentation issues early, and it showed that small usability details matter as much as the core game logic.
         </p>
 
         <h2>References and AI Acknowledgement</h2>
         <p>
-          I referred to the official documentation for Express, EJS, Socket.IO, MDN Web Docs, and the W3C Nu HTML validator. I also used generative AI assistance in a limited support role to organise relevant documentation notes, check whether the explanation matched the implemented code, and point out possible HTML or CSS validation issues. The website structure, visual direction, game behaviour, final code decisions, and final submitted report remain my own responsibility.
+          I referred to the official documentation for Express, EJS, Socket.IO, MDN Web Docs, and the W3C Nu HTML validator. I used generative AI in a limited support role for proofreading, checking that the report matched the implementation, and identifying possible validation issues. The final structure, visual direction, game behaviour, code decisions, and submitted report remain my responsibility.
         </p>
         <ul>
           <li>Express documentation: <a class="inline-link" href="https://expressjs.com/">https://expressjs.com/</a></li>
